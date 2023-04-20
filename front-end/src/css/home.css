@@ -17,7 +17,7 @@
     z-index: 10;
 }
 
-.eight-ball::before {
+.eight-ball.held:hover::before {
     background-color: white;
     content: "";
     position: absolute;
