@@ -1,0 +1,40 @@
+.home-container {
+    background-color: black;
+    width: 100vw;
+    height: 100vh;
+}
+
+.eight-ball {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.eight-ball img {
+    width: 10rem;
+    z-index: 10;
+}
+
+.eight-ball::before {
+    background-color: white;
+    content: "";
+    position: absolute;
+    border: 2rem solid white;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    animation: orbit 1s linear infinite;
+    filter: blur(1rem);
+  }
+  
+ 
+  @keyframes orbit {
+    0% {
+      transform: translate(-1%, -1%) rotate(0) translate(2rem) rotate(-90deg);
+    }
+    100% {
+      transform: translate(-1%, -1%) rotate(360deg) translate(2rem) rotate(-90deg);
+    }
+  }
