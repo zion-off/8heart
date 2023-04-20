@@ -1,0 +1,28 @@
+@font-face {
+    font-family: "Heading";
+    src: url("../fonts/Bold.otf") format("opentype");
+  }
+  
+  @font-face {
+    font-family: "Heading2";
+    src: url("../fonts/DemiBold.otf") format("opentype");
+  }
+  
+  @font-face {
+    font-family: "Body";
+    src: url("../fonts/Medium.otf") format("opentype");
+  }
+  
+  @font-face {
+    font-family: "Description";
+    src: url("../fonts/MediumItalic.otf") format("opentype");
+  }
+  
+  @font-face {
+    font-family: "Regular";
+    src: url("../fonts/Regular.otf") format("opentype");
+  }
+
+  h3 {
+    font-family: "Heading", sans-serif;
+  }

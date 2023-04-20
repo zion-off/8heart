@@ -1,0 +1,33 @@
+.sd-navigation__complete-btn {
+  background-color: red;
+}
+
+.sd-navigation__complete-btn:active {
+  background-color: rgb(173, 1, 1);
+}
+
+.sd-btn--action:not(:disabled):hover {
+  background-color: rgb(173, 1, 1);
+}
+
+.sd-body {
+  font-family: "Body", sans-serif;
+}
+
+.sd-title {
+  font-family: "Heading2", sans-serif;
+}
+
+.sv-ranking-item__index.sv-ranking-item__index {
+    background-color: rgb(255, 66, 66);
+}
+
+.sv-components-column {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sd-root-modern {
+    background-color: pink;
+}
