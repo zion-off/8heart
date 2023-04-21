@@ -1,13 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React from "react";
 import TextField from "@mui/material/TextField";
 import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
-import Alert from '@mui/material/Alert';
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { Navigate, useSearchParams } from "react-router-dom";
-import axios from "axios";
+import Body from "../fonts/Regular.otf";
 import "../css/index.css";
 import "../css/login.css";
 
@@ -21,107 +19,75 @@ const theme = createTheme({
       main: "#81b29a",
       contrastText: "#fff",
     },
+    components: {
+      MuiCssBaseline: {
+        styleOverrides: `
+          @font-face {
+            font-family: 'Body';
+            font-style: normal;
+            src: local('Raleway'), local('Raleway-Regular'), url(${Body}) format('opentype');
+          }
+        `,
+      },
+    },
   },
 });
 
-const backend_route =`/api/login/`;
-
-const defaultValues = {
-  username: "",
-  password: "",
-};
-
 function Login() {
-  const [urlSearchParams] = useSearchParams();
-  const [formValues, setFormValues] = useState(defaultValues);
-  const [errorMessage, setErrorMessage] = useState("");
-  const [response, setResponse] = useState({});
+  return (
+    <div className="login-container">
+      <ThemeProvider theme={theme}>
+        <Container component="main" maxWidth="xs" sx={{ fontFamily: "Body" }}>
+          <Box
+            sx={{
+              mt: 8,
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              fontFamily: "Body",
+            }}>
+            <h1>login</h1>
 
-  useEffect(() => {
-    const qsError = urlSearchParams.get("error");
-    if (qsError === "protected")
-      setErrorMessage(
-        <Alert severity="error">Please log in to view our pages.</Alert>
-      );
-  }, []);
+            <Box component="form" sx={{ mt: 1, fontFamily: "Body" }}>
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                id="username"
+                label="username"
+                name="username"
+              />
 
-  const handleInputChange = (evt) => {
-    const { name, value } = evt.target;
-    setFormValues({
-      ...formValues,
-      [name]: value,
-    });
-  };
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                name="password"
+                label="password"
+                type="password"
+                id="password"
+              />
 
-  const handleSubmit = async (evt) => {
-    evt.preventDefault();
+              <button type="submit">log in</button>
 
-    try {
-      const response = await axios.post(backend_route, formValues);
-      setErrorMessage("");
-      setResponse(response.data);
-    } catch (err) {
-      setErrorMessage(
-        <Alert severity="error">{`${err.response.data.message}`}</Alert>
-      );
-    }
-  };
-
-  if (!response.success) {
-    return (
-      <div className="login-Container">
-        <ThemeProvider theme={theme}>
-          <Container component="main" maxWidth="xs">
-            <Box
-              sx={{
-                mt: 8,
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-              }}>
-              <h1>login</h1>
-  
-              {errorMessage}
-  
-              <Box component="form" onSubmit={handleSubmit} sx={{ mt: 1 }}>
-                <TextField
-                  margin="normal"
-                  required
-                  fullWidth
-                  id="username"
-                  label="username"
-                  name="username"
-                  onChange={handleInputChange}
-                />
-  
-                <TextField
-                  margin="normal"
-                  required
-                  fullWidth
-                  name="password"
-                  label="password"
-                  type="password"
-                  id="password"
-                  onChange={handleInputChange}
-                />
-  
-                <button type="submit">log in</button>
-  
-                <Grid container>
-                  <Grid item xs={9}></Grid>
-                  <Grid item>
-                    <Link href="/register" color="#225095" variant="body2">
-                      register
-                    </Link>
-                  </Grid>
+              <Grid container>
+                <Grid item xs={9}></Grid>
+                <Grid item>
+                  <Link
+                    href="/register"
+                    color="#225095"
+                    variant="body2"
+                    sx={{ fontFamily: "Body" }}>
+                    register
+                  </Link>
                 </Grid>
-              </Box>
+              </Grid>
             </Box>
-          </Container>
-        </ThemeProvider>
-      </div>
-    );
-  } else return <Navigate to="/" />;
+          </Box>
+        </Container>
+      </ThemeProvider>
+    </div>
+  );
 }
 
 export default Login;
