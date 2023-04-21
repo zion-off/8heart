@@ -21,14 +21,16 @@ function Home() {
   useEffect(() => {
     // send the request to the server api, including the Authorization header with our JWT token in it
     axios
-      .get("/api/protected/home/", {
+      .get("http://localhost:8000/protected/home/", {
         headers: { Authorization: `JWT ${jwtToken}` }, // pass the token, if any, to the server
       })
       .then((res) => {
         // do nothing
+        console.log(res);
       })
       .catch((err) => {
         setIsLoggedIn(false); // update this state variable, so the component re-renders
+        console.log(err);
       });
   }, []);
 
@@ -46,12 +48,10 @@ function Home() {
           {
             headers: {
               "Content-Type": "application/json",
-              Authorization:
-                `${process.env.OPEN_AI_API_KEY}`,
+              Authorization: `Bearer ${process.env.REACT_APP_AUTH_TOKEN}`,
             },
           }
         );
-
         const generatedText = response.data.choices[0].text.trim();
         const responseElement = document.querySelector(".response h3");
         responseElement.innerText = generatedText;

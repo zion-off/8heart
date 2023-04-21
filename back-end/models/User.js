@@ -28,6 +28,8 @@ UserSchema.pre("save", function (next) {
   bcrypt.hash(user.password, 10, (err, hash) => {
     if (err) return next(err)
     user.password = hash // update the password to the hashed version
+    console.log("hashed password: " + user.password)
+    console.log(this.username)
     next()
   })
 })

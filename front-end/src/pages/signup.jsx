@@ -48,7 +48,7 @@ const Signup = (props) => {
       };
       // send a POST request with the data to the server api to authenticate
       const response = await axios.post(
-        `${process.env.REACT_APP_BACKEND}/auth/signup`,
+        `${process.env.REACT_APP_BACKEND}/auth/register`,
         requestData
       );
       // store the response data into s the data state variable
@@ -76,7 +76,7 @@ const Signup = (props) => {
               }}>
               <h1>register</h1>
 
-              <Box component="form" sx={{ mt: 1 }}>
+              <Box component="form" onSubmit={handleSubmit} sx={{ mt: 1 }}>
                 <TextField
                   margin="normal"
                   required
@@ -96,7 +96,7 @@ const Signup = (props) => {
                   id="password"
                 />
 
-                <button type="submit" onSubmit={handleSubmit}>
+                <button type="submit" >
                   register
                 </button>
 

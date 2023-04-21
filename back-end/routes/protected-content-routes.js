@@ -26,6 +26,21 @@ const protectedContentRoutes = () => {
     }
   )
 
+  router.get(
+    "/home",
+    passport.authenticate("jwt", { session: false }),
+    (req, res) => {
+      res.json({
+        success: true,
+        message: "You have accessed the protected /home route!",
+        user: {
+          id: req.user.id,
+          username: req.user.username,
+        },
+      });
+    }
+  );
+
   return router
 }
 

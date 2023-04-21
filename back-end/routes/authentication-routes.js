@@ -9,8 +9,8 @@ const authenticationRouter = () => {
   // create a new router that we can customize
   const router = express.Router()
 
-  // a route to handle user signup requests to /auth/signup
-  router.post("/signup", async (req, res) => {
+  // a route to handle user signup requests to /auth/register
+  router.post("/register", async (req, res) => {
     // console.log(`Incoming signup data: ${JSON.stringify(req.body, null, 0)}`)
     // grab the username and password from the POST body
     const username = req.body.username

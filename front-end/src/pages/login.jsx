@@ -92,7 +92,7 @@ const Login = (props) => {
               }}>
               <h1>login</h1>
 
-              <Box component="form" sx={{ mt: 1, fontFamily: "Body" }}>
+              <Box component="form" onSubmit={handleSubmit} sx={{ mt: 1, fontFamily: "Body" }}>
                 <TextField
                   margin="normal"
                   required
@@ -112,7 +112,7 @@ const Login = (props) => {
                   id="password"
                 />
 
-                <button type="submit" onSubmit={handleSubmit}>log in</button>
+                <button type="submit" >log in</button>
 
                 <Grid container>
                   <Grid item xs={9}></Grid>

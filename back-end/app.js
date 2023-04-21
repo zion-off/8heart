@@ -14,6 +14,7 @@ passport.use(jwtStrategy);
 app.use(passport.initialize());
 const mongoose = require("mongoose");
 const User = require("./models/User.js");
+const homeRouter = require('./routes/home.route.js');
 
 try {
   mongoose.connect(process.env.MONGODB_URI);
@@ -38,5 +39,6 @@ app.use("/cookie", cookieRoutes());
 app.use("/auth", authenticationRoutes());
 app.use("/ranking", rankingRouter);
 app.use("/protected", protectedContentRoutes());
+app.use("/home", homeRouter);
 
 module.exports = app;
