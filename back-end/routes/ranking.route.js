@@ -3,6 +3,6 @@ const router = express.Router();
 
 const rankingController = require("../controllers/ranking.controller.js");
 
-router.post("/save-survey-response", rankingController.updateRanking);
+router.post("/update", rankingController.updateRanking);
 
 module.exports = router;

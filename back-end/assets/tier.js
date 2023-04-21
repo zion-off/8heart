@@ -1,7 +1,7 @@
-let one = 'physical touch';
-let two = 'gift giving';
-let three = 'acts of service';
-let four = 'quality time';
-let five = 'words of affirmation';
+let one = 'Quality time';
+  let two = 'Gift giving';
+  let three = 'Words of affirmation';
+  let four = 'Physical touch';
+  let five = 'Acts of service';
 
-export { one, two, three, four, five };
+  export { one, two, three, four, five };
