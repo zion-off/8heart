@@ -1,5 +1,5 @@
 .home-container {
-  background-color: black;
+  background-color: pink;
   width: 100vw;
   height: 100vh;
 }
@@ -41,7 +41,7 @@
 h3 {
   font-family: "Regular", sans-serif;
   position: absolute;
-  background-color: black;
+  background-color: pink;
   color: white;
   text-align: center;
   width: 100%;

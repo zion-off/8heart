@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { Link, Navigate, useSearchParams } from "react-router-dom";
+import axios from "axios";
 import TextField from "@mui/material/TextField";
-import Link from "@mui/material/Link";
+import MUILink from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
@@ -33,61 +35,104 @@ const theme = createTheme({
   },
 });
 
-function Login() {
-  return (
-    <div className="login-container">
-      <ThemeProvider theme={theme}>
-        <Container component="main" maxWidth="xs" sx={{ fontFamily: "Body" }}>
-          <Box
-            sx={{
-              mt: 8,
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              fontFamily: "Body",
-            }}>
-            <h1>login</h1>
+const Login = (props) => {
+  let [urlSearchParams] = useSearchParams();
 
-            <Box component="form" sx={{ mt: 1, fontFamily: "Body" }}>
-              <TextField
-                margin="normal"
-                required
-                fullWidth
-                id="username"
-                label="username"
-                name="username"
-              />
+  const [response, setResponse] = useState({});
+  const [errorMessage, setErrorMessage] = useState("");
 
-              <TextField
-                margin="normal"
-                required
-                fullWidth
-                name="password"
-                label="password"
-                type="password"
-                id="password"
-              />
+  useEffect(() => {
+    const qsError = urlSearchParams.get("error");
+    if (qsError === "protected")
+      setErrorMessage("Please log in to view our fabulous protected content.");
+  }, []);
 
-              <button type="submit">log in</button>
+  useEffect(() => {
+    if (response.success && response.token) {
+      console.log(`User successfully logged in: ${response.username}`);
+      localStorage.setItem("token", response.token);
+    }
+  }, [response]);
 
-              <Grid container>
-                <Grid item xs={9}></Grid>
-                <Grid item>
-                  <Link
-                    href="/register"
-                    color="#225095"
-                    variant="body2"
-                    sx={{ fontFamily: "Body" }}>
-                    register
-                  </Link>
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const requestData = {
+        username: e.target.username.value,
+        password: e.target.password.value,
+      };
+
+      const response = await axios.post(
+        `${process.env.REACT_APP_BACKEND}/auth/login`,
+        requestData
+      );
+
+      console.log(`Server response: ${JSON.stringify(response.data, null, 0)}`);
+      setResponse(response.data);
+    } catch (err) {
+      setErrorMessage(
+        "You entered invalid credentials.  Try harder!  Check out the usernames in the server's user_data.js file."
+      );
+    }
+  };
+
+  if (!response.success) {
+    return (
+      <div className="login-container">
+        <ThemeProvider theme={theme}>
+          <Container component="main" maxWidth="xs" sx={{ fontFamily: "Body" }}>
+            <Box
+              sx={{
+                mt: 8,
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                fontFamily: "Body",
+              }}>
+              <h1>login</h1>
+
+              <Box component="form" sx={{ mt: 1, fontFamily: "Body" }}>
+                <TextField
+                  margin="normal"
+                  required
+                  fullWidth
+                  id="username"
+                  label="username"
+                  name="username"
+                />
+
+                <TextField
+                  margin="normal"
+                  required
+                  fullWidth
+                  name="password"
+                  label="password"
+                  type="password"
+                  id="password"
+                />
+
+                <button type="submit" onSubmit={handleSubmit}>log in</button>
+
+                <Grid container>
+                  <Grid item xs={9}></Grid>
+                  <Grid item>
+                    <MUILink
+                      href="/register"
+                      color="#225095"
+                      variant="body2"
+                      sx={{ fontFamily: "Body" }}>
+                      register
+                    </MUILink>
+                  </Grid>
                 </Grid>
-              </Grid>
+              </Box>
             </Box>
-          </Box>
-        </Container>
-      </ThemeProvider>
-    </div>
-  );
-}
+          </Container>
+        </ThemeProvider>
+      </div>
+    );
+  } else return <Navigate to="/home" />;
+};
 
 export default Login;
