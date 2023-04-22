@@ -10,20 +10,50 @@
   justify-content: center;
   align-items: center;
   position: relative;
+  bottom: 10%;
 }
 
 .eight-ball img {
   width: 10rem;
   z-index: 10;
+  animation: rotate 3s cubic-bezier(0.68, -0.55, 0.265, 1.8) 1;
+  transition: transform 0.5s ease-out;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  90% {
+    transform: rotate(1080deg);
+  }
+  95% {
+    transform: rotate(1060deg);
+  }
+  96% {
+    transform: rotate(1070deg);
+  }
+  97% {
+    transform: rotate(1075deg);
+  }
+  98% {
+    transform: rotate(1079deg);
+  }
+  99% {
+    transform: rotate(1079.9deg);
+  }
+  100% {
+    transform: rotate(1080deg);
+  }
 }
 
 .eight-ball.held:hover::before {
-  background-color: white;
+  background-color: red;
   content: "";
   position: absolute;
-  border: 2rem solid white;
-  width: 2rem;
-  height: 2rem;
+  border: 3rem solid red;
+  width: 0.5rem;
+  height: 0.5rem;
   border-radius: 50%;
   animation: orbit 1s linear infinite;
   filter: blur(1rem);
@@ -40,10 +70,28 @@
 
 h3 {
   font-family: "Regular", sans-serif;
-  position: absolute;
+}
+
+.box {
   background-color: pink;
-  color: white;
-  text-align: center;
+  position: absolute;
+  display: flex;
+  top: 60%;
   width: 100%;
-  top: 80%;
+  justify-content: center;
+}
+
+.response {
+  display: flex;
+  background-color: rgb(90, 90, 90);
+  border-radius: 1rem;
+  color: white;
+  text-align: left;
+  width: 50%;
+  height: 10rem;
+  padding-top: 1rem;
+  padding-left: 2rem;
+  padding-bottom: 1rem;
+  padding-right: 2rem;
+  margin-bottom: 100px;
 }
