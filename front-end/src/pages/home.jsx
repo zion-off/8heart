@@ -40,7 +40,12 @@ function Home() {
           const response = await axios.post(
             "http://localhost:8000/home/",
             { transcript: transcript },
-            { headers: { "Content-Type": "application/json", Authorization: `JWT ${jwtToken}`} }
+            {
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: `JWT ${jwtToken}`,
+              },
+            }
           );
           // if (!response.ok) {
           //   throw new Error("Network response was not ok");
@@ -83,9 +88,10 @@ function Home() {
               onMouseDown={handleHold}
               onMouseUp={handleRelease}></img>
           </div>
-
-          <div className="response">
-            <h3></h3>
+          <div className="box">
+            <div className="response">
+              <h3></h3>
+            </div>
           </div>
         </div>
       ) : (
