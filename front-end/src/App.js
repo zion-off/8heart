@@ -1,4 +1,9 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import SetCookie from "./pages/SetCookie"
+import GetCookie from "./pages/GetCookie"
+import SetLocalStorage from "./pages/SetLocalStorage"
+import GetLocalStorage from "./pages/GetLocalStorage"
+import Protected from "./pages/Protected"
 import Welcome from './pages/welcome';
 import Login from './pages/login';
 import Ranking from './pages/ranking';
@@ -11,6 +16,11 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
+        <Route path="/set-cookie" element={<SetCookie />} />
+          <Route path="/get-cookie" element={<GetCookie />} />
+          <Route path="/set-local-storage" element={<SetLocalStorage />} />
+          <Route path="/get-local-storage" element={<GetLocalStorage />} />
+          <Route path="/protected" element={<Protected />} />
           <Route path="/" element={<Welcome/>}></Route>
           <Route path="/login" element={<Login/>}></Route>
           <Route path="/ranking" element={<Ranking/>}></Route>

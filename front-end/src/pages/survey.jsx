@@ -1,5 +1,5 @@
-import React, { useCallback } from "react";
-import axios from 'axios';
+import React from "react";
+import axios from "axios";
 import { Model } from "survey-core";
 import { Survey } from "survey-react-ui";
 import "survey-core/defaultV2.min.css";
@@ -23,23 +23,20 @@ var myCss = {
 
 function SurveyComponent() {
   const survey = new Model(json);
-  const saveResults = useCallback((sender) => {
-    const results = JSON.stringify(sender.data);
-    axios
-      .post("/save-results", { results })
-      .then((response) => {
-        console.log(response.data);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }, []);
+  survey.onComplete.add((sender, options) => {
+    const values = sender.data;
+    console.log(values);
+    axios.post('http://localhost:8000/ranking/update', { loveLanguages: values["love-languages"] })
+    .then(response => {
+      console.log(response.data);
+    })
+    .catch(error => {
+      console.error(error);
+    });
+  });
 
-  survey.onComplete.add(saveResults);
   survey.css = myCss;
   return <Survey model={survey} />;
 }
 
 export default SurveyComponent;
-
-// https://surveyjs.io/form-library/documentation/get-started-react#install-the-survey-react-npm-package
