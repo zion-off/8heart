@@ -64,7 +64,7 @@ const Login = (props) => {
       };
 
       const response = await axios.post(
-        `${process.env.REACT_APP_BACKEND}/auth/login`,
+        `http://localhost:8000/auth/login`,
         requestData
       );
 

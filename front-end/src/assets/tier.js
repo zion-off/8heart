@@ -1,7 +1,13 @@
-let one = 'Words of affirmation';
-  let two = 'Gift giving';
-  let three = 'Physical touch';
-  let four = 'Acts of service';
-  let five = 'Quality time';
+const one = "Words of affirmation";
+const two = "Gift giving";
+const three = "Physical touch";
+const four = "Acts of service";
+const five = "Quality time";
 
-  export { one, two, three, four, five };
+module.exports = {
+  one,
+  two,
+  three,
+  four,
+  five,
+};

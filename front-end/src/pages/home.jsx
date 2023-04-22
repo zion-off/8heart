@@ -7,7 +7,6 @@ import axios from "axios";
 import "../css/home.css";
 import "../css/index.css";
 import logo from "../assets/logo.png";
-import { one, two, three, four, five } from "../assets/tier.js";
 
 // main function
 function Home() {
@@ -37,31 +36,27 @@ function Home() {
   useEffect(() => {
     if (!isHeld && shouldFetch) {
       const fetchData = async () => {
-        const response = await axios.post(
-          "https://api.openai.com/v1/completions",
-          {
-            model: "text-davinci-003",
-            prompt: `From most preferred to least preferred, my partner's love languages are: ${one}, ${two}, ${three}, ${four}, and ${five}. ${transcript} Answer based on the given information.`,
-            max_tokens: 500,
-            temperature: 0.7,
-          },
-          {
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${process.env.REACT_APP_AUTH_TOKEN}`,
-            },
-          }
-        );
-        const generatedText = response.data.choices[0].text.trim();
-        const responseElement = document.querySelector(".response h3");
-        responseElement.innerText = generatedText;
-        resetTranscript();
-        setShouldFetch(false);
+        try {
+          const response = await axios.post(
+            "http://localhost:8000/home/",
+            { transcript: transcript },
+            { headers: { "Content-Type": "application/json", Authorization: `JWT ${jwtToken}`} }
+          );
+          // if (!response.ok) {
+          //   throw new Error("Network response was not ok");
+          // }
+          const generatedText = await response.data;
+          const responseElement = document.querySelector(".response h3");
+          responseElement.innerText = generatedText;
+          resetTranscript();
+          setShouldFetch(false);
+        } catch (error) {
+          console.error(error);
+        }
       };
-
       fetchData();
     }
-  }, [isHeld, shouldFetch, transcript, resetTranscript]);
+  }, [isHeld, shouldFetch, resetTranscript]);
 
   const handleHold = (event) => {
     if (event.target.tagName.toLowerCase() === "img") {
