@@ -1,13 +1,24 @@
 const axios = require("axios");
-const { one, two, three, four, five } = require('../../front-end/src/assets/tier.js');
+const mongoose = require("mongoose")
+const User = require("../models/User.js")
 
-async function generateText(transcript) {
+async function generateText(transcript, nameCookie, req) {
   try {
+    console.log('nameCookie from backend: ', nameCookie);
+    const user = await User.findOne({ username: nameCookie });
+    if (!user) {
+      throw new Error("User not found in database");
+    }
+    const first = user.one;
+    const second = user.two;
+    const third = user.three;
+    const fourth = user.four;
+    const fifth = user.five;
     const response = await axios.post(
       "https://api.openai.com/v1/completions",
       {
         model: "text-davinci-003",
-        prompt: `From most preferred to least preferred, my partner's love languages are: ${one}, ${two}, ${three}, ${four}, and ${five}. ${transcript} Answer based on the given information.`,
+        prompt: `From most preferred to least preferred, my partner's love languages are: ${first}, ${second}, ${third}, ${fourth}, and ${fifth}. ${transcript} Answer based on the given information.`,
         max_tokens: 500,
         temperature: 0.7,
       },
@@ -23,6 +34,7 @@ async function generateText(transcript) {
     throw new Error(error.message);
   }
 }
+
 
 module.exports = {
   generateText,

@@ -16,6 +16,22 @@ const UserSchema = new Schema({
     type: String,
     required: true,
   },
+  one: {
+    type: String,
+  },
+  two: {
+    type: String,
+  },
+  three: {
+    type: String,
+  },
+  four: {
+    type: String,
+  },
+  five: {
+    type: String,
+  }
+  
 })
 
 // hash the password before the user is saved

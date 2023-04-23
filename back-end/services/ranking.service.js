@@ -1,24 +1,32 @@
-const fs = require("fs");
-const path = require("path");
-const tierFilePath = path.resolve(__dirname, "../../front-end/src/assets/tier.js");
+const mongoose = require("mongoose");
+const User = require("../models/User.js");
 
-async function logRanking(loveLanguages) {
+async function logRanking(loveLanguages, req) {
   // Updated parameter
   const [one, two, three, four, five] = loveLanguages; // Destructuring the array
+  console.log("ranking update:");
+  console.log(one);
+  console.log(two);
+  console.log(three);
+  console.log(four);
+  console.log(five);
+  const findUsername = req.cookies.nameCookie;
+  console.log("looking for user:");
+  console.log(findUsername);
 
-  const newTierContent = `
-  let one = '${one}';
-  let two = '${two}';
-  let three = '${three}';
-  let four = '${four}';
-  let five = '${five}';
+  const updateObject = {
+    one,
+    two,
+    three,
+    four,
+    five,
+  };
 
-  export { one, two, three, four, five };
-`.trim();
-
-  fs.writeFileSync(tierFilePath, newTierContent);
-
-  console.log(`New ranking values written to ${tierFilePath}`);
+  const user = await User.findOneAndUpdate(
+    { username: findUsername },
+    updateObject,
+    { new: true }
+  );
 }
 
 module.exports = {

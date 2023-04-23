@@ -34,22 +34,28 @@ function Home() {
   }, []);
 
   useEffect(() => {
-    if (!isHeld && shouldFetch) {
+    if (!isHeld && shouldFetch && transcript.trim()) {
+      const value = `; ${document.cookie}`;
+      const parts = value.split(`; nameCookie=`);
+      let myName;
+      if (parts.length === 2) {
+        // console.log ('from frontend: ', parts.pop().split(";").shift());
+        myName = parts.pop().split(";").shift();
+      }
+      console.log('from frontend again: ', myName);
       const fetchData = async () => {
         try {
           const response = await axios.post(
             "http://localhost:8000/home/",
-            { transcript: transcript },
+            { transcript: transcript, nameCookie: myName },
+            { withCredentials: true },
             {
               headers: {
-                "Content-Type": "application/json",
                 Authorization: `JWT ${jwtToken}`,
-              },
+                "Content-Type": "application/json",
+              }, // pass the token, if any, to the server
             }
           );
-          // if (!response.ok) {
-          //   throw new Error("Network response was not ok");
-          // }
           const generatedText = await response.data;
           const responseElement = document.querySelector(".response h3");
           responseElement.innerText = generatedText;
@@ -61,7 +67,7 @@ function Home() {
       };
       fetchData();
     }
-  }, [isHeld, shouldFetch, resetTranscript]);
+  }, [isHeld, shouldFetch, resetTranscript, transcript]);
 
   const handleHold = (event) => {
     if (event.target.tagName.toLowerCase() === "img") {

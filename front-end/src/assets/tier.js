@@ -1,8 +1,8 @@
-const one = "Words of affirmation";
-const two = "Gift giving";
-const three = "Physical touch";
-const four = "Acts of service";
-const five = "Quality time";
+const one = 'Acts of service';
+const two = 'Quality time';
+const three = 'Words of affirmation';
+const four = 'Physical touch';
+const five = 'Gift giving';
 
 module.exports = {
   one,

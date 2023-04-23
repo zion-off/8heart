@@ -15,6 +15,11 @@ const authenticationRouter = () => {
     // grab the username and password from the POST body
     const username = req.body.username
     const password = req.body.password
+    const one = '';
+    const two = '';
+    const three = '';
+    const four = '';
+    const five = '';
 
     if (!username || !password) {
       // no username or password received in the POST body... send an error
@@ -26,7 +31,7 @@ const authenticationRouter = () => {
 
     // try to create a new user
     try {
-      const user = await new User({ username, password }).save()
+      const user = await new User({ username, password, one, two, three, four, five }).save()
       // user saved successfully... send a success response
       console.error(`New user: ${user}`)
       const token = user.generateJWT() // generate a signed token

@@ -10,6 +10,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Body from "../fonts/Regular.otf";
 import "../css/index.css";
 import "../css/login.css";
+import { useCookies } from 'react-cookie';
 
 const theme = createTheme({
   palette: {
@@ -36,6 +37,8 @@ const theme = createTheme({
 });
 
 const Login = (props) => {
+
+  const [cookies, setCookie] = useCookies(['nameCookie']);
   let [urlSearchParams] = useSearchParams();
 
   const [response, setResponse] = useState({});
@@ -46,11 +49,11 @@ const Login = (props) => {
     if (qsError === "protected")
       setErrorMessage("Please log in to view our fabulous protected content.");
   }, []);
-
   useEffect(() => {
     if (response.success && response.token) {
       console.log(`User successfully logged in: ${response.username}`);
       localStorage.setItem("token", response.token);
+      setCookie("nameCookie", response.username, { path: "/" });
     }
   }, [response]);
 
@@ -62,7 +65,7 @@ const Login = (props) => {
         username: e.target.username.value,
         password: e.target.password.value,
       };
-
+      
       const response = await axios.post(
         `http://localhost:8000/auth/login`,
         requestData
@@ -92,7 +95,10 @@ const Login = (props) => {
               }}>
               <h1>login</h1>
 
-              <Box component="form" onSubmit={handleSubmit} sx={{ mt: 1, fontFamily: "Body" }}>
+              <Box
+                component="form"
+                onSubmit={handleSubmit}
+                sx={{ mt: 1, fontFamily: "Body" }}>
                 <TextField
                   margin="normal"
                   required
@@ -112,7 +118,7 @@ const Login = (props) => {
                   id="password"
                 />
 
-                <button type="submit" >log in</button>
+                <button type="submit">log in</button>
 
                 <Grid container>
                   <Grid item xs={9}></Grid>
