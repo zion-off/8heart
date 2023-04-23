@@ -48,7 +48,6 @@ function Home() {
           const response = await axios.post(
             "http://localhost:8000/home/",
             { transcript: transcript, nameCookie: myName },
-            { withCredentials: true },
             {
               headers: {
                 Authorization: `JWT ${jwtToken}`,
