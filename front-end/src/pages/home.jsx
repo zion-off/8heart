@@ -20,7 +20,7 @@ function Home() {
   useEffect(() => {
     // send the request to the server api, including the Authorization header with our JWT token in it
     axios
-      .get("http://localhost:8000/protected/home/", {
+      .get("http://10.20.81.150:8000/protected/home/", {
         headers: { Authorization: `JWT ${jwtToken}` }, // pass the token, if any, to the server
       })
       .then((res) => {
@@ -42,11 +42,11 @@ function Home() {
         // console.log ('from frontend: ', parts.pop().split(";").shift());
         myName = parts.pop().split(";").shift();
       }
-      console.log('from frontend again: ', myName);
+      console.log("from frontend again: ", myName);
       const fetchData = async () => {
         try {
           const response = await axios.post(
-            "http://localhost:8000/home/",
+            "http://10.20.81.150:8000/home/",
             { transcript: transcript, nameCookie: myName },
             {
               headers: {
@@ -91,7 +91,8 @@ function Home() {
               src={logo}
               alt=""
               onMouseDown={handleHold}
-              onMouseUp={handleRelease}></img>
+              onMouseUp={handleRelease}
+              className={`${isHeld ? "" : "released"}`}></img>
           </div>
           <div className="box">
             <div className="response">

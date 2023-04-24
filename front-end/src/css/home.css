@@ -16,7 +16,11 @@
 .eight-ball img {
   width: 10rem;
   z-index: 10;
-  animation: rotate 3s cubic-bezier(0.68, -0.55, 0.265, 1.8) 1;
+}
+
+.released {
+  animation: shake 3s;
+  /* animation: rotate 3s cubic-bezier(0.68, -0.55, 0.265, 1.8) 1; */
   transition: transform 0.5s ease-out;
 }
 
@@ -47,6 +51,13 @@
   }
 }
 
+@keyframes shake {
+  0% { transform: translate(0, 0); }
+  2%, 6%, 10%, 14%, 18%, 22%, 26%, 30%, 34%, 38%, 42%, 46%, 50%, 54%, 58%, 62%, 66%, 70%, 74%, 78%, 82%, 86%, 90%, 94%, 98% { transform: translate(-2px, 0); }
+  1%, 5%, 9%, 13%, 17%, 21%, 25%, 29%, 33%, 37%, 41%, 45%, 49%, 53%, 57%, 61%, 65%, 69%, 73%, 77%, 81%, 85%, 89%, 93%, 97% { transform: translate(2px, 0); }
+  100% { transform: translate(0, 0); }
+}
+
 .eight-ball.held:hover::before {
   background-color: red;
   content: "";
@@ -68,8 +79,9 @@
   }
 }
 
-h3 {
+.box h3 {
   font-family: "Regular", sans-serif;
+  font-size: small;
 }
 
 .box {
@@ -88,7 +100,8 @@ h3 {
   color: white;
   text-align: left;
   width: 50%;
-  height: 10rem;
+  height: auto;
+  min-height: 10rem;
   padding-top: 1rem;
   padding-left: 2rem;
   padding-bottom: 1rem;
