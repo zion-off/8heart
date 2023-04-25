@@ -8,7 +8,7 @@ require('dotenv').config({ silent: true }) // load environmental variables from 
 const port = 8000
 
 // call a function to start listening to the port
-const listener = server.listen(port, function () {
+const listener = server.listen(port, '', function () {
   console.log(`Server running on port: ${port}`)
 })
 
