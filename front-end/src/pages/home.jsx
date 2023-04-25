@@ -68,6 +68,24 @@ function Home() {
     }
   }, [isHeld, shouldFetch, resetTranscript, transcript]);
 
+  useEffect(() => {
+    const element = document.getElementById("ball");
+    const contextmenuHandler = (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      event.stopImmediatePropagation();
+      return false;
+    };
+    if (element) {
+      element.addEventListener("contextmenu", contextmenuHandler);
+    }
+    return () => {
+      if (element) {
+        element.removeEventListener("contextmenu", contextmenuHandler);
+      }
+    };
+  }, []);
+
   const handleHold = (event) => {
     if (event.target.tagName.toLowerCase() === "img") {
       setIsHeld(true);
@@ -92,6 +110,9 @@ function Home() {
               alt=""
               onMouseDown={handleHold}
               onMouseUp={handleRelease}
+              onTouchStart={handleHold}
+              onTouchEnd={handleRelease}
+              id="ball"
               className={`${isHeld ? "" : "released"}`}></img>
           </div>
           <div className="box">
