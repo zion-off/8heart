@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import axios from "axios";
 import { Model } from "survey-core";
 import { Survey } from "survey-react-ui";
@@ -22,18 +22,16 @@ var myCss = {
 };
 
 function SurveyComponent() {
+  const [redirecting, setRedirecting] = useState(false);
   const survey = new Model(json);
-  survey.completedHtml = "Thank you for completing the survey! Redirecting you to the home page in 3 seconds...";
+  survey.completedHtml = "Thank you for completing the survey! Go to <a href='https://8heart.zzzzion.com/home' style='display: inline;'>8heart.zzzzion.com</a> to use the app, or feel free to return to <a href='https://8heart.zzzzion.com/ranking' style='display: inline;'>8heart.zzzzion.com/ranking</a> anytime to resubmit your answers.";
   survey.onComplete.add((sender, options) => {
     const values = sender.data;
     console.log(values);
     axios.post('https://8heart.zzzzion.com/back-end/ranking/update', { loveLanguages: values["love-languages"] }, { withCredentials: true })
     .then(response => {
       console.log(response.data);
-      const timeout = setTimeout(() => {
-        // 👇️ redirects to an external URL
-        window.location.replace('https://8heart.zzzzion.com/home');
-      }, 3000);
+      setRedirecting(true);
     })
     .catch(error => {
       console.error(error);
