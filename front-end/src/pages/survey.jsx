@@ -24,7 +24,7 @@ var myCss = {
 function SurveyComponent() {
   const [redirecting, setRedirecting] = useState(false);
   const survey = new Model(json);
-  survey.completedHtml = "Thank you for completing the survey! Go to <a href='https://8heart.zzzzion.com/home' style='display: inline;'>8heart.zzzzion.com</a> to use the app, or feel free to return to <a href='https://8heart.zzzzion.com/ranking' style='display: inline;'>8heart.zzzzion.com/ranking</a> anytime to resubmit your answers.";
+  survey.completedHtml = "Thank you for completing the survey! Go to <a href='https://8heart.zzzzion.com/home'>8heart.zzzzion.com</a> to use the app, or feel free to return to <a href='https://8heart.zzzzion.com/ranking'>8heart.zzzzion.com/ranking</a> anytime to resubmit your answers.";
   survey.onComplete.add((sender, options) => {
     const values = sender.data;
     console.log(values);
