@@ -16,3 +16,8 @@ code {
 a {
   -webkit-user-select: none !important;
 }
+
+img {
+  -webkit-user-select: none; /* disable selection/Copy of UIWebView */
+  -webkit-touch-callout: none;
+}
