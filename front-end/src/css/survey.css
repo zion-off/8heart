@@ -1,5 +1,6 @@
 .sd-navigation__complete-btn {
   background-color: red;
+  font-family: "Body", sans-serif;
 }
 
 .sd-navigation__complete-btn:active {
@@ -15,7 +16,7 @@
 }
 
 .sd-title {
-  font-family: "Heading2", sans-serif;
+  font-family: "Body", sans-serif;
 }
 
 .sv-ranking-item__index.sv-ranking-item__index {

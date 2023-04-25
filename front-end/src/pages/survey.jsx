@@ -23,12 +23,17 @@ var myCss = {
 
 function SurveyComponent() {
   const survey = new Model(json);
+  survey.completedHtml = "Thank you for completing the survey! Redirecting you to the home page in 3 seconds...";
   survey.onComplete.add((sender, options) => {
     const values = sender.data;
     console.log(values);
     axios.post('https://8heart.zzzzion.com/back-end/ranking/update', { loveLanguages: values["love-languages"] }, { withCredentials: true })
     .then(response => {
       console.log(response.data);
+      const timeout = setTimeout(() => {
+        // 👇️ redirects to an external URL
+        window.location.replace('https://8heart.zzzzion.com/home');
+      }, 3000);
     })
     .catch(error => {
       console.error(error);
