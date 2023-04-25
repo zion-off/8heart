@@ -114,7 +114,7 @@ const Signup = (props) => {
         </ThemeProvider>
       </div>
     );
-  } else return <Navigate to="/home" />;
+  } else return <Navigate to="/ranking" />;
 };
 
 export default Signup;
