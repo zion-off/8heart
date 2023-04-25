@@ -1,10 +1,10 @@
 const axios = require("axios");
-const mongoose = require("mongoose")
-const User = require("../models/User.js")
+const mongoose = require("mongoose");
+const User = require("../models/User.js");
 
 async function generateText(transcript, nameCookie, req) {
   try {
-    console.log('nameCookie from backend: ', nameCookie);
+    console.log("nameCookie from backend: ", nameCookie);
     const user = await User.findOne({ username: nameCookie });
     if (!user) {
       throw new Error("User not found in database");
@@ -18,9 +18,12 @@ async function generateText(transcript, nameCookie, req) {
       "https://api.openai.com/v1/completions",
       {
         model: "text-davinci-003",
-        prompt: `From most preferred to least preferred, my partner's love languages are: ${first}, ${second}, ${third}, ${fourth}, and ${fifth}. ${transcript} Answer based on the given information.`,
-        max_tokens: 500,
-        temperature: 0.7,
+        prompt: `From most preferred to least preferred, my partner's love languages are: ${first}, ${second}, ${third}, ${fourth}, and ${fifth}. ${transcript}. Answer based on the given information, but don't give me a list of their love languages.`,
+        temperature: 0.1,
+        max_tokens: 256,
+        top_p: 1,
+        frequency_penalty: 0,
+        presence_penalty: 2,
       },
       {
         headers: {
@@ -34,7 +37,6 @@ async function generateText(transcript, nameCookie, req) {
     throw new Error(error.message);
   }
 }
-
 
 module.exports = {
   generateText,
