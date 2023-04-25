@@ -48,7 +48,7 @@ const Signup = (props) => {
       };
       // send a POST request with the data to the server api to authenticate
       const response = await axios.post(
-        `https://localhost:8000/auth/register`,
+        `https://8heart.zzzzion.com/back-end/auth/register`,
         requestData
       );
       // store the response data into s the data state variable
