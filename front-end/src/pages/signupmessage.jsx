@@ -34,8 +34,8 @@ function SignupMessage() {
         <p>
           Send your partner this unique link {" "}
           <a
-            href={`/users/${link}`}>{`localhost:3000/users/${link}`}</a> so they can enter their preferences. They might want to resubmit someday, so save this link! You can't recover it without help from an administrator. After they've submitted, you can head over to <a
-            href={`/home`}>{`localhost:3000/home/`}</a> to use the app!
+            href={`/users/${link}`}>{`8heart.zzzzion.com/users/${link}`}</a> so they can enter their preferences. They might want to resubmit someday, so save this link! You can't recover it without help from an administrator. After they've submitted, you can head over to <a
+            href={`/home`}>{`8heart.zzzzion.com/home/`}</a> to use the app!
         </p>
       ) : (
         <p>Loading...</p>
