@@ -52,5 +52,5 @@ jobs:
         with:
           app-name: '8heart'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_6E0462B913C34D46BB0A808437DB4C87 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_B50D39CF109A468B82A43D653BA2A382 }}
           package: .
