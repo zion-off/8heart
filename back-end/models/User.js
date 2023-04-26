@@ -5,6 +5,7 @@ const bcrypt = require("bcryptjs")
 const jwt = require("jsonwebtoken")
 const jwtStrategy = require("../config/jwt-config.js") // import setup options for using JWT in passport
 
+
 // this is our mongoose model for a user
 const UserSchema = new Schema({
   username: {
@@ -30,8 +31,10 @@ const UserSchema = new Schema({
   },
   five: {
     type: String,
+  },
+  uniqueLink: {
+    type: String
   }
-  
 })
 
 // hash the password before the user is saved

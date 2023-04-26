@@ -20,7 +20,7 @@ function Home() {
   useEffect(() => {
     // send the request to the server api, including the Authorization header with our JWT token in it
     axios
-      .get("https://8heart.zzzzion.com/back-end/protected/home/", {
+      .get("http://localhost:8000/protected/home/", {
         headers: { Authorization: `JWT ${jwtToken}` }, // pass the token, if any, to the server
       })
       .then((res) => {
@@ -46,7 +46,7 @@ function Home() {
       const fetchData = async () => {
         try {
           const response = await axios.post(
-            "https://8heart.zzzzion.com/back-end/home/",
+            "http://localhost:8000/home/",
             { transcript: transcript, nameCookie: myName },
             {
               headers: {

@@ -9,6 +9,7 @@ import Login from './pages/login';
 import Ranking from './pages/ranking';
 import Home from './pages/home';
 import Register from './pages/signup';
+import SignupMessage from "./pages/signupmessage";
 import "./App.css";
 
 function App() {
@@ -23,9 +24,10 @@ function App() {
           <Route path="/protected" element={<Protected />} />
           <Route path="/" element={<Welcome/>}></Route>
           <Route path="/login" element={<Login/>}></Route>
-          <Route path="/ranking" element={<Ranking/>}></Route>
+          <Route path="/users/:uniqueLink" element={<Ranking/>}></Route>
           <Route path="/home" element={<Home/>}></Route>
           <Route path="/register" element={<Register/>}></Route>
+          <Route path="/signupmessage" element={<SignupMessage/>}></Route>
         </Routes>
       </BrowserRouter>
     </div>

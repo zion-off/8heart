@@ -9,6 +9,7 @@ import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import "../css/index.css";
 import "../css/login.css";
+import { useCookies } from 'react-cookie';
 
 const theme = createTheme({
   palette: {
@@ -27,6 +28,7 @@ const Signup = (props) => {
   let [urlSearchParams] = useSearchParams();
   const [response, setResponse] = useState({});
   const [errorMessage, setErrorMessage] = useState("");
+  const [cookies, setCookie] = useCookies(['nameCookie']);
 
   useEffect(() => {
     // if the user is logged-in, save the token to local storage
@@ -39,8 +41,8 @@ const Signup = (props) => {
   const handleSubmit = async (e) => {
     // prevent the HTML form from actually submitting... we use React's javascript code instead
     e.preventDefault();
-
     try {
+      setCookie("nameCookie", e.target.username.value, { path: "/" });
       // create an object with the data we want to send to the server
       const requestData = {
         username: e.target.username.value, // gets the value of the field in the submitted form with name='username'
@@ -48,7 +50,7 @@ const Signup = (props) => {
       };
       // send a POST request with the data to the server api to authenticate
       const response = await axios.post(
-        `https://8heart.zzzzion.com/back-end/auth/register`,
+        `http://localhost:8000/auth/register`,
         requestData
       );
       // store the response data into s the data state variable
@@ -114,7 +116,7 @@ const Signup = (props) => {
         </ThemeProvider>
       </div>
     );
-  } else return <Navigate to="/ranking" />;
+  } else return <Navigate to="/signupmessage" />;
 };
 
 export default Signup;

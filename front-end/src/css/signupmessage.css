@@ -1,0 +1,18 @@
+@font-face {
+  font-family: "Body";
+  src: url("../fonts/Medium.otf") format("opentype");
+}
+
+.meta-container {
+  background-color: pink;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100%;
+}
+
+.signup-message-container {
+  font-family: "Body", sans-serif;
+  width: 20rem;
+}
