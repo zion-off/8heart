@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const User = require("../models/User.js");
+const { useParams } = require('react-router-dom');
 
 async function logRanking(loveLanguages, req) {
   // Updated parameter
@@ -10,8 +11,8 @@ async function logRanking(loveLanguages, req) {
   console.log(three);
   console.log(four);
   console.log(five);
-  const findUsername = req.cookies.nameCookie;
-  console.log("looking for user:");
+  const { findUsername } = useParams();
+  console.log("looking for user with uniqueLink:");
   console.log(findUsername);
 
   const updateObject = {
@@ -23,7 +24,7 @@ async function logRanking(loveLanguages, req) {
   };
 
   const user = await User.findOneAndUpdate(
-    { username: findUsername },
+    { uniqueLink: findUsername },
     updateObject,
     { new: true }
   );
