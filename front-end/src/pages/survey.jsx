@@ -27,7 +27,7 @@ function SurveyComponent() {
   survey.onComplete.add((sender, options) => {
     const values = sender.data;
     console.log(values);
-    axios.post('http://localhost:8000/ranking/update', { loveLanguages: values["love-languages"] }, { withCredentials: true })
+    axios.post('https://8heart.zzzzion.com/back-end/ranking/update', { loveLanguages: values["love-languages"] }, { withCredentials: true })
     .then(response => {
       console.log(response.data);
     })
