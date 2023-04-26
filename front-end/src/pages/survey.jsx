@@ -24,11 +24,11 @@ var myCss = {
 
 function SurveyComponent() {
   const survey = new Model(json);
+  const { uniqueLink } = useParams();
   survey.completedHtml = "Your responses have been recorded!";
   survey.onComplete.add((sender, options) => {
     const values = sender.data;
     console.log(values);
-    const { uniqueLink } = useParams();
     axios.post('https://8heart.zzzzion.com/back-end/ranking/update', { uniqueLink, loveLanguages: values["love-languages"] }, { withCredentials: true })
     .then(response => {
       console.log(response.data);
