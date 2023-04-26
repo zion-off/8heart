@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
 const User = require("../models/User.js");
-const { useParams } = require('react-router-dom');
 
 async function logRanking(loveLanguages, req) {
   // Updated parameter
