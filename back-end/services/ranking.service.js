@@ -11,7 +11,7 @@ async function logRanking(loveLanguages, req) {
   console.log(three);
   console.log(four);
   console.log(five);
-  const { findUsername } = useParams();
+  const findUsername = req.body.uniqueLink;
   console.log("looking for user with uniqueLink:");
   console.log(findUsername);
 

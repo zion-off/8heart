@@ -6,6 +6,7 @@ import "survey-core/defaultV2.min.css";
 import "../css/index.css";
 import "../css/survey.css";
 import { json } from "./survey-data";
+const { useParams } = require('react-router-dom');
 
 var myCss = {
   navigation: {
@@ -27,7 +28,8 @@ function SurveyComponent() {
   survey.onComplete.add((sender, options) => {
     const values = sender.data;
     console.log(values);
-    axios.post('https://8heart.zzzzion.com/back-end/ranking/update', { loveLanguages: values["love-languages"] }, { withCredentials: true })
+    const { uniqueLink } = useParams();
+    axios.post('https://8heart.zzzzion.com/back-end/ranking/update', { uniqueLink, loveLanguages: values["love-languages"] }, { withCredentials: true })
     .then(response => {
       console.log(response.data);
     })
