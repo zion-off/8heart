@@ -19,11 +19,11 @@ async function generateText(transcript, nameCookie, req) {
       {
         model: "text-davinci-003",
         prompt: `From most preferred to least preferred, my partner's love languages are: ${first}, ${second}, ${third}, ${fourth}, and ${fifth}. ${transcript}. Answer based on the given information, but don't give me a list of their love languages.`,
-        temperature: 0.1,
+        temperature: 0.7,
         max_tokens: 256,
         top_p: 1,
         frequency_penalty: 0,
-        presence_penalty: 2,
+        presence_penalty: 0,
       },
       {
         headers: {
