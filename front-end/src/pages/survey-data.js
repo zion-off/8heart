@@ -3,7 +3,7 @@ export const json = {
       {
         "type": "ranking",
         "name": "love-languages",
-        "title": "Please rank these items in order of how important they are to your partner, from most to least important. Best to leave this to your partner! ",
+        "title": "Please rank these items in order of how important they are to you. ",
         "isRequired": true,
         "choices": [
           "Physical touch",
