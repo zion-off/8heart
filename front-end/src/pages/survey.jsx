@@ -6,7 +6,7 @@ import "survey-core/defaultV2.min.css";
 import "../css/index.css";
 import "../css/survey.css";
 import { json } from "./survey-data";
-const { useParams } = require('react-router-dom');
+import { useParams } from "react-router-dom";
 
 var myCss = {
   navigation: {
