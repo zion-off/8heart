@@ -29,7 +29,7 @@ function SurveyComponent() {
   survey.onComplete.add((sender, options) => {
     const values = sender.data;
     console.log(values);
-    axios.post('http://localhost:8000/ranking/update', { uniqueLink, loveLanguages: values["love-languages"] }, { withCredentials: true })
+    axios.post(`${process.env.REACT_APP_BACKEND}/ranking/update/`, { uniqueLink, loveLanguages: values["love-languages"] }, { withCredentials: true })
     .then(response => {
       console.log(response.data);
     })

@@ -15,7 +15,7 @@ function SignupMessage() {
       async function generateLink() {
         try {
           console.log('myName: ', myName);
-          const response = await axios.post("http://localhost:8000/linkinfo", {
+          const response = await axios.post(`${process.env.REACT_APP_BACKEND}/linkinfo/`, {
             nameCookie: myName,
           });
           setLink(response.data);
