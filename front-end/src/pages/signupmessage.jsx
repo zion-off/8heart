@@ -15,7 +15,7 @@ function SignupMessage() {
       async function generateLink() {
         try {
           console.log('myName: ', myName);
-          const response = await axios.post("https://8heart.zzzzion.com/back-end/linkinfo", {
+          const response = await axios.post("http://localhost:8000/linkinfo", {
             nameCookie: myName,
           });
           setLink(response.data);

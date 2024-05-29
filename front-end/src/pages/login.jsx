@@ -60,6 +60,8 @@ const Login = (props) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    console.log("given username: " + e.target.username.value);;
+    console.log("given password: " + e.target.password.value);;
     try {
       const requestData = {
         username: e.target.username.value,
@@ -67,7 +69,7 @@ const Login = (props) => {
       };
       
       const response = await axios.post(
-        `https://8heart.zzzzion.com/back-end/auth/login`,
+        `http://localhost:8000/auth/login`,
         requestData
       );
 

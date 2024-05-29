@@ -17,7 +17,7 @@ async function generateText(transcript, nameCookie, req) {
     const response = await axios.post(
       "https://api.openai.com/v1/completions",
       {
-        model: "text-davinci-003",
+        model: "gpt-3.5-turbo-instruct",
         prompt: `From most preferred to least preferred, my partner's love languages are: ${first}, ${second}, ${third}, ${fourth}, and ${fifth}. ${transcript}. Answer based on the given information, and be creative, but don't give me a list of their love languages or step by step instructions.`,
         temperature: 0.7,
         max_tokens: 256,
