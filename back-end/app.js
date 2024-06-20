@@ -25,7 +25,7 @@ app.use(cookieParser());
 app.use(morgan("dev", { skip: (req, res) => process.env.NODE_ENV === "test" }));
 
 // CORS configuration
-const allowedOrigins = ['https://8heart.vercel.app', 'https://8heart.zzzzion.com', 'https://eightheart.onrender.com'];
+const allowedOrigins = ['https://8heart.vercel.app', 'https://8heart.zzzzion.com', 'https://8heart-yjn2.vercel.app'];
 app.use(cors({
   origin: function (origin, callback) {
     if (!origin) return callback(null, true);
